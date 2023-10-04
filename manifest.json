@@ -1,0 +1,64 @@
+{
+    "name":"TCE Tool",
+    "description":"Tool For The Crazy Entrepreneur",
+    "version":"0.1.0",
+    "manifest_version":3,
+    "icons": {
+        "16": "./images/icon-16x16.png",
+        "32": "./images/icon-32x32.png",
+        "48": "./images/icon-48x48.png",
+        "128": "./images/icon-128x128.png"
+    },
+    
+    "background": {
+        "service_worker": "./background.js"
+    },
+    "action": {
+        "default_popup": "./popup.html",
+        "default_icons": {
+            "16": "./images/icon-16x16.png",
+            "32": "./images/icon-32x32.png",
+            "48": "./images/icon-48x48.png",
+            "128": "./images/icon-128x128.png"
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "storage",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://*.instagram.com/*"
+    ] ,
+    "content_scripts":[
+        {
+        "matches": [
+            "https://*.instagram.com/*"
+        ],
+        "js": ["foreground.js"],
+        "run_at": "document_end"
+        }
+    ]
+    ,
+    "web_accessible_resources" : 
+     [ {
+        "resources": ["scripts.js"],
+        "matches": [
+        "https://*.instagram.com/*"
+        ]
+      },{
+        "resources": ["sample.json"],
+        "matches": [
+        "https://*.instagram.com/*"
+        ]
+      }
+      ,{
+        "resources": ["popup.js"],
+        "matches": [
+        "https://*.instagram.com/*"
+        ]
+      }
+    ]
+
+}
